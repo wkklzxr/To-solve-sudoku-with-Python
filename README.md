@@ -55,11 +55,11 @@ Python解决数独游戏
 
 # 代码部分
 # 1. 初始化数独九宫格
-import copy
+import copy  # 使用deepcopy
 import sys
 sys.setrecursionlimit(1000000)
 
-sudoku1 = [[] for i in range(9)]
+sudoku1 = [[] for i in range(9)]  # 多层列表嵌套
 
 sudoku1[0] = [' ', 8, 9, 1, ' ', 3, ' ', ' ', ' ']
 sudoku1[1] = [' ', 2, 7, 4, ' ', ' ', 8, ' ', ' ']
@@ -85,10 +85,7 @@ sudoku2[7] = [8, ' ', ' ', ' ', ' ', ' ', ' ', ' ', 4]
 sudoku2[8] = [' ', ' ', 1, ' ', 6, ' ', 2, ' ', ' ']
 
 
-
-# 对横轴各个格子求范围
-
-
+# 2. 对横轴各个格子求范围
 def getPossibleHor(target):
     sudoku = copy.deepcopy(target)
     for i in range(9):
@@ -103,7 +100,7 @@ def getPossibleHor(target):
     return sudoku
 
 
-# 对纵轴各个格子求范围
+# 3. 对纵轴各个格子求范围
 def getPossibleVer(target):
     sudoku = copy.deepcopy(target)
     for i in range(9):
@@ -118,7 +115,7 @@ def getPossibleVer(target):
     return sudoku
 
 
-# 求九宫格范围
+# 4. 求3x3格子范围
 def getPossibleSudoku(target):
     sudoku = copy.deepcopy(target)
     for i in range(0, 9, 3):
@@ -138,8 +135,7 @@ def getPossibleSudoku(target):
     return sudoku
 
 
-# 求交集
-
+# 5. 求交集
 def setupUnion(target):
     sudoku = copy.deepcopy(target)
     inithor = getPossibleHor(sudoku)
@@ -157,7 +153,7 @@ def setupUnion(target):
 
     return sudoku
 
-
+# 6. 得到最终答案（一次调用可能解决不了问题，进行多次调用即可（递归））
 def getFinalAnswer(target):
     sudoku = copy.deepcopy(target)
     unionTarget = setupUnion(sudoku)
