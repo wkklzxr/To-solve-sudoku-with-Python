@@ -51,7 +51,7 @@ Python解决数独游戏
 # date: 2020-6-22
 
 # 解决思路：
-# 横、纵、九宫格求交集
+# 横、纵、3x3求交集
 
 # 代码部分
 # 1. 初始化数独九宫格
@@ -152,6 +152,7 @@ def setupUnion(target):
                     inithorset.intersection(initverset, initsoduset))
 
     return sudoku
+
 
 # 6. 得到最终答案（一次调用可能解决不了问题，进行多次调用即可（递归））
 def getFinalAnswer(target):
